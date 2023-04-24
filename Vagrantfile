@@ -67,4 +67,31 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+
+    servers = [{
+        :hostname => "Controller",
+        :box => "bento/ubuntu-18.04",
+        :ip => "192.168.58.23", # see host network manager
+        :ssh_port => "2200"
+    },
+    {
+        :hostname => "VM1",
+        :box => "bento/ubuntu-18.04",
+        :ip => "192.168.58.24",
+        :ssh_port => "2201" # weil die Vm in der Selben Box sind ist es gut deren SSH auf aufeinanderfolgenden Ports zu haben !
+    }
+  ]
+
+  servers.each do |machine|
+    config.vm.define machine[:hostname] do |node|
+      node.vm.hostname = machine[:hostname]
+      node.vm.box = machine[:box]
+      node.vm.network :private_network, ip: machine[:ip]
+      node.vm.network "forwarded_port", guest: 22, host: machine[:ssh_port], id: "ssh" # port forwarding <= 1024 ist priviligiert deswegen 2201
+        node.vm.provider :virtualbox do |vb|
+          vb.customize ["modifyvm", :id, "--memory", 512]
+          vb.customize ["modifyvm", :id, "--cpus", 4]
+        end
+    end 
+  end
 end
