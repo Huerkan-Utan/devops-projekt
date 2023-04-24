@@ -1,0 +1,26 @@
+
+- hosts: virtualbox
+  become: yes # become sudo user - beim ausführen des playbooks wird ein password verlangt
+  tasks:
+  - name: ensure docker is installed
+    apt:
+      name: docker.io
+      state: latest
+      update_cache: yes #sudo apt update!
+      
+  - name: ensure docker-compose is installed
+    apt:
+      name: docker-compose
+      state: latest
+      update_cache: yes #sudo apt update!
+
+  - name: Added user to docker group
+    user:
+      name: vagrant
+      groups: docker
+      
+  - name: Install Apache
+    apt:
+      name: apache2
+      state: present
+      update_cache: yes #sudo apt update!
