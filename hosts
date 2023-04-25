@@ -9,3 +9,4 @@ ff02::2 ip6-allrouters
 
 192.168.58.23 Controller
 192.168.58.24 VM1
+192.168.58.25 VM2

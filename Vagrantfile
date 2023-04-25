@@ -84,7 +84,7 @@ Vagrant.configure("2") do |config|
         :hostname => "VM2",
         :box => "bento/ubuntu-18.04",
         :ip => "192.168.58.25",
-        :ssh_port => "2210" 
+        :ssh_port => "2203" 
     }
   ]
 
