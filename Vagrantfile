@@ -79,6 +79,12 @@ Vagrant.configure("2") do |config|
         :box => "bento/ubuntu-18.04",
         :ip => "192.168.58.24",
         :ssh_port => "2201" # weil die Vm in der Selben Box sind ist es gut deren SSH auf aufeinanderfolgenden Ports zu haben !
+    },
+    {
+        :hostname => "VM2",
+        :box => "bento/ubuntu-18.04",
+        :ip => "192.168.58.25",
+        :ssh_port => "2210" 
     }
   ]
 

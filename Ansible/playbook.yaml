@@ -1,4 +1,3 @@
-
 - hosts: virtualbox
   become: yes # become sudo user - beim ausführen des playbooks wird ein password verlangt
   tasks:
@@ -24,3 +23,9 @@
       name: apache2
       state: present
       update_cache: yes #sudo apt update!
+      
+  - name: Install Git
+    apt:
+      name: git
+      state: present
+      update_cache: yes #sudo apt update
