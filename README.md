@@ -21,25 +21,17 @@
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com)-->
-
-
+This HomeLab was created to test out new IaC Tools and play with Docker and Orchestration. This is a Sanbox for privately testing new software or code!
 
 Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
+* Getting started wioth DevOps principles like: IaC, Automation, Deployment, Containerization,...
+* You shouldn't be doing the same tasks over and over in order to test new things in different VMs
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+In the future i plan to add a Github actions Pipeline to at firs act as a Linter. A Proper CI/CD pipe? maybe
 
 
 ### Built With
@@ -52,49 +44,52 @@ Here are a few Tools used in the making of this HomeLab.
 * Docker swarm
 * Apache2
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+This project by the configuration that is set up at the Moment will:
+
+1. Use Vagrant to create 3 VMs (1x Controller and 2x Worker VMs) <br> 
+   Set up the Image, hostname, SSH, Port fowarding, Foldersyncing
+2. Configure the VMs with Ansible (install software, i.e Docker, Apache2)
+3. A dummy Flask Docker Container that is deployed by Docker swarm to all VMs 
+4. Locally host a Test website
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+This is a list of how to things you need to use the software and how to install them.
+* Virtualbox
   ```sh
-  npm install npm@latest -g
+  sudo apt install virtualbox virtualbox-ext-packwd
   ```
+* Vagrant
+  ```sh
+  sudo apt install vagrant
+  ```
+  Every other needed Software will be installed by Ansible inside of the VMs
+
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/Huerkan-Utan/devops-projekt.git
    ```
-3. Install NPM packages
-   ```sh
-   npm install
+2. Navigate to the Folder inside of your Terminal 
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+   cd ../devops-projekt
    ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+3. Initialise Vagrant and run it
+   ```Vagrant
+   vagrant init && vargrant up
+   ```
+For any other reference on how to use Vagrant and Docker swarm please reference [here](https://cheatography.com/davbfr/cheat-sheets/vagrant-cheat-sheet/).
+for Vagrant and [here](https://github.com/sematext/cheatsheets/blob/master/docker-swarm-cheatsheet.md) for Docker swarm
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-This Repo is used as a Template HomeLab to locally test new technologies and tools and have fun
+This Repo is used as a Template HomeLab to locally test new technologies and tools and have fun. You are free to change up the Configuration as you wish as this was a fun little learning Project
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -113,9 +108,13 @@ This Repo is used as a Template HomeLab to locally test new technologies and too
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# TODO 
+## Issue fixing
 --- 
-Update den Prozess, um die anderen VM in den swarm zu bekommen!
-docker leave swarm 
-ansible playbook laufen lassen mit anderm Hostfile!
-dann service scalen und dann gehts
+# description
+Once you run ` vagrant halt ` and gracefully stop the HomeLab and try to start it back up again all but the first VM1 is not reachable. 
+---
+steps taken to resolve this: <br>
+1. SSH into the VM and leave the Docker swarm by running ` docker leave swarm `
+2. Run the docker swarm playbook to re add the VMs as a worker
+3. re create the Application by running `docker stack deploy --compose-file docker-compose APPNAME`
+4. scale the Service and now its on the worker nodes as well
