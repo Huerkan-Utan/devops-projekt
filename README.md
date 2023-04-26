@@ -105,6 +105,7 @@ This Repo is used as a Template HomeLab to locally test new technologies and too
 - [ ] Dockerize my website hosting
 - [ ] fix Current Docker swarm worker Node issues!!
 - [ ] Get League of legends working in a container in regards to security
+- [ ] Create Github action to always run the updated Playbook on all VMs if possible
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
