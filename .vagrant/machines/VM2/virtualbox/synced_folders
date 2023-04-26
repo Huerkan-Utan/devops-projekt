@@ -1,1 +1,1 @@
-{"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/hurkan/Documents/devops/devops-projekt","disabled":false,"__vagrantfile":true}}}
+{"virtualbox":{"/var/www/html/":{"guestpath":"/var/www/html","hostpath":"/home/hurkan/Documents/devops/devops-projekt/website","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/hurkan/Documents/devops/devops-projekt","disabled":false,"__vagrantfile":true}}}

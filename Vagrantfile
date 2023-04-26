@@ -98,6 +98,7 @@ Vagrant.configure("2") do |config|
           vb.customize ["modifyvm", :id, "--memory", 512]
           vb.customize ["modifyvm", :id, "--cpus", 4]
         end
-    end 
+    end
+    config.vm.synced_folder "website/", "/var/www/html/"
   end
 end
